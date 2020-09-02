@@ -1,10 +1,13 @@
 export const basicCollection = {
+	url: "basic",
 	name: "기초유형",
 	areas: [
 		{
+			url: "data-structure",
             name : "자료구조",
 			skills: [
 				{
+					svg_name: "stack",
 					name: "스택",
 					description: {
 						text: "Learn what accessibility is and why it is important.",
@@ -21,9 +24,11 @@ export const basicCollection = {
 				}                
             ]
         },{
+			url: "searching",
             name : "탐색",
 			skills: [
 				{
+					svg_name: "dfs & bfs",
 					name: "DFS&BFS",
 					description: {
 						text: "Learn what accessibility is and why it is important.",
@@ -40,16 +45,19 @@ export const basicCollection = {
 				}
             ]
         },{
+			url: "sorting",
 			name : "정렬",
-			skills:[{
-				name:"버블정렬",
-				description:{
-						text : "설명",
-						ilnks:[
-							["google","https://www.google.com"]
-						]
+			skills:[
+				{
+					svg_name: "bubble",
+					name: "버블정렬",
+					description: {
+							text : "설명",
+							ilnks:[
+								["google","https://www.google.com"]
+							]
+						}
 					}
-				}
 			]
 		}
     ]}

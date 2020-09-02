@@ -1,9 +1,11 @@
-export const codingTestCollection={
+export const codingTestCollection = {
+	url: "coding test",
 	name: "코딩테스트대비문제",
 	areas: [
 		{
 			skills: [
 				{
+					svg_name: "stack",
 					name: "스택",
 					description: {
 						text: "Learn what accessibility is and why it is important.",
