@@ -28,9 +28,9 @@ export function pathify (name) {
 export function constructImagePathPrefix (collection, area, skill) {
 	const paths = [
 		"assets",
-		collection.name,
-		area.name,
-		skill.name
+		collection.url,
+		area.url,
+		skill.svg_name
 	].filter(name => name != null).map(pathify);
 	return `${paths.join("/")}.svg`;
 }

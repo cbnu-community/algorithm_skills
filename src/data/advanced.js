@@ -1,10 +1,13 @@
 export const advancedCollection = {
+    url: "advanced",
 	name: "심화유형",
 	areas: [
 		{
-            name : "트리",
+            url: "tree", 
+            name: "트리",
 			skills: [
 				{
+                    svg_name: "lca",
 					name: "LCA",
 					description: {
 						text: "Learn what accessibility is and why it is important.",
@@ -20,10 +23,13 @@ export const advancedCollection = {
 					}
                 }
             ]
-        },{
+        },
+        {
+            url: "graph",
             name : "그래프",
 			skills: [
 				{
+                    svg_name: "shortest path",
 					name: "Shortest Path",
 					description: {
 						text: "Learn what accessibility is and why it is important.",
@@ -39,23 +45,13 @@ export const advancedCollection = {
 					}
 				}
             ]
-        },{
+        },
+        {
+            url: "dp",
             name : "동적 계획법",
             skills : [
                 {
-                    name : "내용 1",
-                    description:{
-                        text : "동적계획법내용",
-                        links : [
-                            ["A","https://google.com"]
-                        ]
-                    }
-                }
-            ]
-        },{
-            name : "해시",
-            skills : [
-                {
+                    svg_name: "dp",
                     name : "내용 1",
                     description:{
                         text : "동적계획법내용",
@@ -67,13 +63,31 @@ export const advancedCollection = {
             ]
         },
         {
-            name : "그리디",
+            url: "hash",
+            name : "해시",
             skills : [
                 {
-                    name : "내용 1",
-                    description:{
-                        text : "동적계획법내용",
-                        links : [
+                    svg_name: "hash",
+                    name: "내용 1",
+                    description: {
+                        text: "동적계획법내용",
+                        links: [
+                            ["A","https://google.com"]
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            url: "greedy",
+            name: "그리디",
+            skills: [
+                {
+                    svg_name: "greedy",
+                    name: "내용 1",
+                    description: {
+                        text: "동적계획법내용",
+                        links: [
                             ["A","https://google.com"]
                         ]
                     }
