@@ -43,6 +43,47 @@ export class Description extends LitElement {
 		return [
 			sharedStyles,
 			css`
+			/* Style the tab */
+			.tab {
+			overflow: hidden;
+			border: 1px solid #ccc;
+			background-color: #f1f1f1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 5px 0 0 0;
+			}
+			
+			/* Style the buttons that are used to open the tab content */
+			.tab button {
+			float: left;
+			background-color: inherit;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 5px 5px;
+			width: 5rem;
+			transition: 0.3s;
+			}
+			
+			/* Change background color of buttons on hover */
+			.tab button:hover {
+			background-color: #ddd;
+			}
+			
+			/* Create an active/current tablink class */
+			.tab button.active {
+			background-color: #ccc;
+			}
+			
+			/* Style the tab content */
+			.tabcontent {
+			display: none;
+			padding: 6px 12px;
+			border: 1px solid #ccc;
+			border-top: none;
+			}
+
 				:host {
 					background: var(--background);
 					color: var(--foreground);
@@ -339,20 +380,40 @@ export class Description extends LitElement {
 		`;
 	}
 
+	setCategory (index) {
+		this.skill.category = index;
+		this.requestUpdate();
+	}
+
 	/**
 	 * Renders the description.
 	 * @returns {f}
 	 */
 	render () {
 		const {skill, isCompleted, isAuthenticated, skillSearchQuery} = this;
-		const {description, name} = skill;
+		const {description, name, category} = skill;
 
 		return html`
 			<h4 id="title">${name}</h4>
 			${description != null && description.text != null ? html`<p id="text">${description.text}</p>` : undefined}
-			${description != null && description.links != null && description.links.length > 0 ? html`
-				<div id="links">${repeat(description.links, link => link, this.renderLink.bind(this))}</div>
-			` : undefined}
+			<div class="tab">
+				<button @click="${()=>{ this.setCategory(1); }}">초급</button>
+				<button @click="${()=>{ this.setCategory(2); }}">중급</button>
+				<button @click="${()=>{ this.setCategory(3); }}">고급</button>
+			</div>
+
+
+			${category != null && category == 1 ? html`${description != null && description.links_1 != null && description.links_1.length > 0 ? html`
+			<div id="links">${repeat(description.links_1, link => link, this.renderLink.bind(this))}</div>
+			` : undefined}` : undefined}
+
+			${category != null && category == 2 ? html`${description != null && description.links_2 != null && description.links_2.length > 0 ? html`
+			<div id="links">${repeat(description.links_2, link => link, this.renderLink.bind(this))}</div>
+			` : undefined}` : undefined}
+
+			${category != null && category == 3 ? html`${description != null && description.links_3 != null && description.links_3.length > 0 ? html`
+			<div id="links">${repeat(description.links_3, link => link, this.renderLink.bind(this))}</div>
+			` : undefined}` : undefined}
 			
 			<div id="smart-search">
 				<a id="search-google" href="https://www.google.com/search?q=${encodeURIComponent(skillSearchQuery)}" target="_blank" aria-label="Search on Google" rel="noopener" @click="${e => onClickLink(e)}">
