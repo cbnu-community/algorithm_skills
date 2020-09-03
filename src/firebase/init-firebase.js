@@ -43,10 +43,12 @@ export async function initFirebase () {
 			usersCollectionUnsubscriber = db.collection(CollectionNames.users).doc(user.uid).onSnapshot(doc => {
 				const data = doc.data() || {};
 				auth.setCompletedSkills("completedSkills" in data ? data.completedSkills : []);
+				auth.setSolvingProblems("solvingProblems" in data ? data.solvingProblems : []);
 			});
 
 		} else {
 			auth.setCompletedSkills([]);
+			auth.setSolvingProblems([]);
 		}
 
 		auth.setUser(user);
