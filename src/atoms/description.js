@@ -396,12 +396,16 @@ export class Description extends LitElement {
 		return html`
 			<h4 id="title">${name}</h4>
 			${description != null && description.text != null ? html`<p id="text">${description.text}</p>` : undefined}
-			<div class="tab">
+			
+			${category != null && category > 0 ? html`<div class="tab">
 				<button @click="${()=>{ this.setCategory(1); }}">초급</button>
 				<button @click="${()=>{ this.setCategory(2); }}">중급</button>
 				<button @click="${()=>{ this.setCategory(3); }}">고급</button>
-			</div>
+			</div>` : undefined}
 
+			${category != null && category == 0 ? html`${description != null && description.links_0 != null && description.links_0.length > 0 ? html`
+			<div id="links">${repeat(description.links_0, link => link, this.renderLink.bind(this))}</div>
+			` : undefined}` : undefined}
 
 			${category != null && category == 1 ? html`${description != null && description.links_1 != null && description.links_1.length > 0 ? html`
 			<div id="links">${repeat(description.links_1, link => link, this.renderLink.bind(this))}</div>
