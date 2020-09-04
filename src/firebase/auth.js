@@ -2,7 +2,9 @@ import {measureLogin} from "../util/measure.js";
 
 export const AuthEvents = {
 	authStateChanged: "authStateChanged",
-	completedSkillsChanged: "completedSkillsChanged"
+	completedSkillsChanged: "completedSkillsChanged",
+	solvingProblemChanged:"solvingProblemChanged"
+	//custom : 탭에 있는 문제 체크박스 클릭했을 때 문제 해결했다고 인식.
 };
 
 export const CollectionNames = {
@@ -11,7 +13,9 @@ export const CollectionNames = {
 
 export const StorageNames = {
 	sessionUser: "sessionUser",
-	completedSkills: "completedSkills"
+	completedSkills: "completedSkills",
+	solvingProblems: "solvingProblems"
+	//custom : db에 solvingProblem 따로 만들 것임. 
 };
 
 /**
@@ -36,17 +40,26 @@ export class Auth extends HTMLElement {
 		this.completedSkills = (() => {
 			try {
 				return JSON.parse(localStorage.getItem(StorageNames.completedSkills));
-
 			} catch (err) {
 				return [];
 			}
 		})();
 
+
+		// Grab the problems from localstorage before firebase has loaded.
+		this.solvingProblems=(()=>{
+			try{
+				return JSON.parse(localStorage.getItem(StorageNames.solvingProblems));
+			} catch (err) {
+				return null;
+			}
+		})();
+
+
 		// Grab the session user from localstorage before firebase has loaded.
 		this.user = (() => {
 			try {
 				return JSON.parse(localStorage.getItem(StorageNames.sessionUser));
-
 			} catch (err) {
 				return null;
 			}
@@ -103,6 +116,19 @@ export class Auth extends HTMLElement {
 		auth.dispatchEvent(new CustomEvent(AuthEvents.completedSkillsChanged, {detail: skills}));
 	}
 
+
+	/**
+	 * 
+	 * @param {*} problems 
+	 */
+	setSolvingProblems(problems){
+		problems = problems || [];
+		localStorage.setItem(StorageNames.solvingProblems, JSON.stringify(problems));
+
+		this.solvingProblems=problems;
+		auth.dispatchEvent(new CustomEvent(AuthEvents.solvingProblemChanged, {detail: problems}));
+	}
+
 	/**
 	 * Sets the database.
 	 * @param {*} db
@@ -137,6 +163,8 @@ export class Auth extends HTMLElement {
 	hasCompletedSkill (skillId) {
 		return this.completedSkills.includes(skillId);
 	}
+
+
 
 	/**
 	 * Adds a skill to the list of completed skills and saves it.
@@ -186,6 +214,70 @@ export class Auth extends HTMLElement {
 
 		await this.db.collection(CollectionNames.users).doc(this.user.uid).set({completedSkills: skills});
 	}
+
+
+
+	//여기부터 custom. firebase에 problem-set 설정
+	/**
+	 * Returns whether the skill is completed.
+	 * @param {*} problemId
+	 */
+	hasSolvingProblem (problemId) {
+		return this.solvingProblems.includes(problemId);
+	}
+
+
+
+	/**
+	 * Adds a skill to the list of completed skills and saves it.
+	 * @param {*} problemId
+	 */
+	async addSolvingProblem (problemId) {
+		if (!this.hasSolvingProblem(problemId)) {
+			return await this.updateSolvingProbelems([...this.solvingProblems, problemId]);
+		}
+
+		return false;
+	}
+
+	/**
+	 * Removes a skill from the list of completed skills and saves it.
+	 * @param {*} problemId
+	 */
+	async removeSolvingProblem (problemId) {
+		if (this.hasSolvingProblem(problemId)) {
+			return await this.updateSolvingProbelems(this.solvingProblems.filter(id => id !== problemId));
+		}
+
+		return false;
+	}
+
+	/**
+	 * Toggles whether a skill is completed and saves it.
+	 * @param {*} problemId
+	 */
+	async toggleSolvingProblem (problemId) {
+		if (await this.hasSolvingProblem(problemId)) {
+			return await this.removeSolvingProblem(problemId);
+
+		} else {
+			return await this.addSolvingProblem(problemId);
+		}
+	}
+
+	/**
+	 * Updates the list of completed skills and saves it.
+	 * @param {*} problems
+	 */
+	async updateSolvingProbelems (problems) {
+		if (this.user == null) {
+			return false;
+		}
+
+		await this.db.collection(CollectionNames.users).doc(this.user.uid).set({solvingProblems: problems});
+		console.log("너 업데이트가 안되는 것이니? ",problems);
+	}
+
 }
 
 customElements.define("ws-auth", Auth);
