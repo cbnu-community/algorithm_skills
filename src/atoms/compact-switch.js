@@ -39,7 +39,7 @@ export class Button extends LitElement {
 				}
 				
 				:host([checked]) {
-					--switch-bg: var(--shade-800);
+					--switch-bg: var(--primary-500);
 				}
 				
 				:host([checked]) #knob {
