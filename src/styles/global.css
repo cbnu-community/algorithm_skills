@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-
 * {
 	box-sizing: border-box;
 }
@@ -10,8 +8,7 @@ html {
 	--background: rgb(11, 11, 25);
 	--foreground: rgb(232, 232, 234);
 
-	--background-opaque: rgba(11, 11, 25, 0.8);
-	--foreground-opaque: rgba(247, 251, 255, 0.9);
+	--background-opaque: rgba(11, 11, 25, 0.9);
 
 
 	--link: rgb(92, 133, 255);
@@ -50,7 +47,7 @@ html {
 	--font-size-l: calc(16 / var(--base-size) * 1rem);
 	--font-size-xl: calc(20 / var(--base-size) * 1rem);
 
-	--font-family: 'Rubik', 'Noto Sans KR';
+	--font-family: 'Rubik', sans-serif;
 
 	--focus-outline: 5px auto rgb(77, 144, 254);
 
@@ -59,7 +56,6 @@ html {
 	background: var(--background);
 	color: var(--foreground);
 	touch-action: manipulation;
-
 }
 
 body {

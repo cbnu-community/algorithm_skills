@@ -90,18 +90,15 @@ export class App extends LitElement {
 				}
 				
 				#collections {
-					padding: var(--spacing-xxxl) var(--spacing-xxxl) 50px;
+					padding: var(--spacing-xxxl) var(--spacing-xxxl) 0;
 					display: flex;
     			    flex-direction: column;
     			    align-items: flex-start;
-					min-width: min-content;
-					background: #1D4350;  /* fallback for old browsers */
-					background: -webkit-linear-gradient(-135deg, #80aeeb, #d051d4);  /* Chrome 10-25, Safari 5.1-6 */
-					background: linear-gradient(-135deg, #80aeeb, #d051d4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    			    min-width: min-content;
 				}
 				
 				#footer {
-					padding: var(--spacing-m) var(--spacing-xxxl);
+					padding: var(--spacing-l) var(--spacing-xxxl);
 				}
 
 				.collection:not(:last-child) {
@@ -137,11 +134,11 @@ export class App extends LitElement {
 				}
 
 				:host([compact]) #collections {
-					padding: 30px var(--spacing-l) var(--spacing-l);
+					padding: 0 var(--spacing-l) var(--spacing-s);
 				}
 				
 				:host([compact]) #footer {
-					padding: var(--spacing-l) var(--spacing-l) var(--spacing-l);
+					padding: var(--spacing-xxl) var(--spacing-l) var(--spacing-l);
 				}
 
 				:host([compact]) .collection {
@@ -163,7 +160,6 @@ export class App extends LitElement {
 					z-index: 1234567;
 					width: 100%;
 					background: var(--background-opaque);
-					margin-bottom: 50px;
 				}
 				
 				#toggle-compact {
@@ -694,7 +690,7 @@ export class App extends LitElement {
 			</div>
 			<header id="header">
 				<div>
-					<a href="https://github.com/cbnu-community/algorithm_skills" target="_blank" rel="noopener" aria-label="Open Github" title="Open Github">
+					<a href="https://github.com/andreasbm/web-skills" target="_blank" rel="noopener" aria-label="Open Github" title="Open Github">
 						<ws-icon hoverable .template="${githubIconTemplate}"></ws-icon>
 					</a>
 					${user != null ? html`
@@ -714,6 +710,13 @@ export class App extends LitElement {
 					<ws-button aria-label="Share website" @click="${this.share}" title="Open share menu">
 						<ws-icon .template="${shareIconTemplate}"></ws-icon>
 					</ws-button>
+					<a aria-label="Open author" href="https://andreasbm.github.io" target="_blank" rel="noopener" title="Say hi">
+						<ws-icon hoverable .template="${andreasIconTemplate}" ></ws-icon>
+					</a>
+					<a id="coffee" aria-label="Buy coffee" href="https://www.buymeacoffee.com/AndreasMehlsen" rel="noopener" title="Support me <3" target="_blank">
+						<svg id="steam" viewBox="0 0 250 327" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" stroke-width="41"><path d="M119.563 265.584c-27-20.344-43.822-41.277-50.465-62.8-6.643-21.522-7.9-45.48-3.771-71.875M170.152 189.86c12.91-24.089 19.139-47.393 18.685-69.913-.453-22.52-5.297-42.502-14.53-59.947"/></g></svg>
+						<ws-icon hoverable .template="${coffeeIconTemplate}"></ws-icon>
+					</a>
 				</div>
 			</header>
 			<main id="collections">
@@ -725,12 +728,18 @@ export class App extends LitElement {
 			<footer id="footer">
 				<div>
 					${user != null ? html`
-						<ws-button @click="${signOut}">🔓 로그아웃 </ws-button>
+						<ws-button @click="${signOut}">🔓 Sign out</ws-button>
 					` : html`
-						<ws-button @click="${signIn}">🔒 구글 로그인</ws-button>
+						<ws-button @click="${signIn}">🔒 Sign in with Google</ws-button>
 					`}
-					<a href="https://github.com/cbnu-community/algorithm_skills/stargazers" target="_blank" aria-label="Become a stargazer" rel="noopener">
+					<a href="https://github.com/andreasbm/web-skills/stargazers" target="_blank" aria-label="Become a stargazer" rel="noopener">
 						<ws-button>⭐️ Become a stargazer</ws-button>
+					</a>
+					<a href="https://twitter.com/AndreasMehlsen" target="_blank" aria-label="Open Twitter" rel="noopener">
+						<ws-button>🐦 Say hi on Twitter</ws-button>
+					</a>
+					<a href="https://www.buymeacoffee.com/AndreasMehlsen" target="_blank" aria-label="Buy coffee" rel="noopener">
+						<ws-button>☕️ Support me with a cup of coffee</ws-button>
 					</a>
 				</div>
 			</footer>
