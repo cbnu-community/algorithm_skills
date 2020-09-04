@@ -230,13 +230,13 @@ export const basicCollection = {
 									name: "병합정렬",
 									category: 0,
 									description: {
-									text: "원소를 모두 1개로 쪼개서 자른 순서의 역순으로 크기를 비교해 붙이는 방식",
-									links_0: [
-										["포크댄스로 보는 병합정렬", "https://www.youtube.com/watch?v=XaqR3G_NVoo&feature=emb_title"],
-										["Java로 구현하는 쉬운 Merge Sort", "https://yunmap.tistory.com/entry/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Java%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%98%EB%8A%94-%EC%89%AC%EC%9A%B4-Merge-Sort-%EB%B3%91%ED%95%A9-%EC%A0%95%EB%A0%AC-%ED%95%A9%EB%B3%91-%EC%A0%95%EB%A0%AC"]
-										["[C/C++] 병합 정렬원리와 오름차순구현", "https://swblossom.tistory.com/44"],
-									]
-									},
+										text: "원소를 모두 1개로 쪼개서 자른 순서의 역순으로 크기를 비교해 붙이는 방식",
+										links_0: [
+											["포크댄스로 보는 병합정렬", "https://www.youtube.com/watch?v=XaqR3G_NVoo&feature=emb_title"],
+											["Java로 구현하는 쉬운 Merge Sort", "https://yunmap.tistory.com/entry/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Java%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%98%EB%8A%94-%EC%89%AC%EC%9A%B4-Merge-Sort-%EB%B3%91%ED%95%A9-%EC%A0%95%EB%A0%AC-%ED%95%A9%EB%B3%91-%EC%A0%95%EB%A0%AC"],
+											["[C/C++] 병합 정렬원리와 오름차순구현", "https://swblossom.tistory.com/44"]
+										]
+									}
 								},
 							]
 						},
