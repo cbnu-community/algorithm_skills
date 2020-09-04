@@ -396,10 +396,6 @@ export class Description extends LitElement {
 	 */
 	renderLink (link) {
 		const [name, url] = link;
-		if(auth.hasSolvingProblem()){
-			node.classList.add("on");
-		}
-
 		
 		return html`
 			<div class="link">
