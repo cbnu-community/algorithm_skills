@@ -218,6 +218,10 @@ export class Description extends LitElement {
 					.link:not(:last-child) {
 						margin: 0 0 var(--spacing-m);
 					}
+
+					.check-box{
+						cursor: pointer;
+					}
 				}
 			`
 		];
@@ -243,6 +247,7 @@ export class Description extends LitElement {
 		super();
 		this.directionX = "right";
 		this.directionY = "down";
+
 
 		this.requestClose = this.requestClose.bind(this);
 		this.checkOutsideClick = this.checkOutsideClick.bind(this);
@@ -364,6 +369,25 @@ export class Description extends LitElement {
 		}
 	}
 
+	/*문제 체크 */
+	async toggleSolvingProblem(id){
+		auth.toggleSolvingProblem(id).then();//id 인자로 받아서 그거 넣고 빼고 하는거 .
+	}
+
+
+	checkboxClickHandler(e){
+		const node=this.shadowRoot.getElementById(`${e.target.id}`);
+		this.toggleSolvingProblem(e.target.id);
+		node.classList.toggle("on");
+		if(node.classList.contains("on")){
+			node.innerHTML="■";
+		}
+		else{
+			node.innerHTML="□";
+		}
+	}
+
+	
 
 	/**
 	 * Renders a link.
@@ -372,13 +396,23 @@ export class Description extends LitElement {
 	 */
 	renderLink (link) {
 		const [name, url] = link;
+		if(auth.hasSolvingProblem()){
+			node.classList.add("on");
+		}
+
+		
 		return html`
 			<div class="link">
+				${auth.hasSolvingProblem(name) ? html`<div class="check-box on" id="${name}" style="cursor: pointer" @click="${e=>this.checkboxClickHandler(e)}">■</div>` : html`<div class="check-box" id="${name}" style="cursor: pointer" @click="${e=>this.checkboxClickHandler(e)}">□</div>`}
 				<img class="img" loading="lazy" width="16" height="16" intrinsicsize="16x16" src="https://plus.google.com/_/favicon?domain_url=${encodeURIComponent(getURLOrigin(url))}" alt="Logo for ${name}" />
 				<a class="url" href="${url}" target="_blank" rel="noopener" @click="${e => onClickLink(e)}">${name}</a>
 			</div>
 		`;
 	}
+
+
+
+
 
 	setCategory (index) {
 		this.skill.category = index;
