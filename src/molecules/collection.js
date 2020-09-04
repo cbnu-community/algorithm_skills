@@ -32,7 +32,7 @@ export class Collection extends LitElement {
 					display: inline-block;
 					padding: var(--spacing-xxxl);
 					border-radius: var(--border-radius-l);
-					background: var(--foreground-opaque);
+					background: var(--foreground);
 					color: var(--background);
 				}
 
