@@ -1,4 +1,4 @@
-const SW_VERSION = 1;
+const SW_VERSION = 10;
 const APP_PREFIX = "algorithms-skills";
 const CACHE_NAME = `${APP_PREFIX}-v${SW_VERSION}`;
 const DEBUG = false;
