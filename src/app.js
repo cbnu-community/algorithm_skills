@@ -90,15 +90,18 @@ export class App extends LitElement {
 				}
 				
 				#collections {
-					padding: var(--spacing-xxxl) var(--spacing-xxxl) 0;
+					padding: var(--spacing-xxxl) var(--spacing-xxxl) 50px;
 					display: flex;
     			    flex-direction: column;
     			    align-items: flex-start;
-    			    min-width: min-content;
+					min-width: min-content;
+					background: #1D4350;  /* fallback for old browsers */	
+					background: -webkit-linear-gradient(-135deg, #80aeeb, #d051d4);  /* Chrome 10-25, Safari 5.1-6 */	
+					background: linear-gradient(-135deg, #80aeeb, #d051d4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 				}
 				
 				#footer {
-					padding: var(--spacing-l) var(--spacing-xxxl);
+					padding: var(--spacing-m) var(--spacing-xxxl);
 				}
 
 				.collection:not(:last-child) {
@@ -134,11 +137,11 @@ export class App extends LitElement {
 				}
 
 				:host([compact]) #collections {
-					padding: 0 var(--spacing-l) var(--spacing-s);
+					padding: 30px var(--spacing-l) var(--spacing-l);
 				}
 				
 				:host([compact]) #footer {
-					padding: var(--spacing-xxl) var(--spacing-l) var(--spacing-l);
+					padding: var(--spacing-l) var(--spacing-l) var(--spacing-l);
 				}
 
 				:host([compact]) .collection {
@@ -160,6 +163,7 @@ export class App extends LitElement {
 					z-index: 1234567;
 					width: 100%;
 					background: var(--background-opaque);
+					margin-bottom: 50px;
 				}
 				
 				#toggle-compact {
