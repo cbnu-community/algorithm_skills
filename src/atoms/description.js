@@ -396,14 +396,14 @@ export class Description extends LitElement {
 	 */
 	renderLink (link) {
 		const [name, url] = link;
-		if(auth.hasSolvingProblem()){
+		if(isAuthenticated && auth.hasSolvingProblem()){
 			node.classList.add("on");
 		}
 
 		
 		return html`
 			<div class="link">
-				${auth.hasSolvingProblem(name) ? html`<div class="check-box on" id="${name}" style="cursor: pointer" @click="${e=>this.checkboxClickHandler(e)}">■</div>` : html`<div class="check-box" id="${name}" style="cursor: pointer" @click="${e=>this.checkboxClickHandler(e)}">□</div>`}
+				${isAuthenticated && auth.hasSolvingProblem(name) ? html`<div class="check-box on" id="${name}" style="cursor: pointer" @click="${e=>this.checkboxClickHandler(e)}">■</div>` : html`<div class="check-box" id="${name}" style="cursor: pointer" @click="${e=>this.checkboxClickHandler(e)}">□</div>`}
 				<img class="img" loading="lazy" width="16" height="16" intrinsicsize="16x16" src="https://plus.google.com/_/favicon?domain_url=${encodeURIComponent(getURLOrigin(url))}" alt="Logo for ${name}" />
 				<a class="url" href="${url}" target="_blank" rel="noopener" @click="${e => onClickLink(e)}">${name}</a>
 			</div>
