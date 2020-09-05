@@ -51,7 +51,7 @@ export class Auth extends HTMLElement {
 			try{
 				return JSON.parse(localStorage.getItem(StorageNames.solvingProblems));
 			} catch (err) {
-				return null;
+				return [];
 			}
 		})();
 
