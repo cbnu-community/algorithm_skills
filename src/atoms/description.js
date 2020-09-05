@@ -396,6 +396,7 @@ export class Description extends LitElement {
 	 */
 	renderLink (link) {
 		const [name, url] = link;
+		const {isAuthenticated} = this;
 		if(isAuthenticated && auth.hasSolvingProblem()){
 			node.classList.add("on");
 		}
